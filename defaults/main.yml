@@ -1,0 +1,4 @@
+generic_motd_file_src: "motd.j2"
+generic_motd_file_dest: "/etc/motd"
+generic_motd_owner: root
+generic_motd_group: operator
