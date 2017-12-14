@@ -12,7 +12,7 @@
     template:
       src: "{{ generic_motd_file_src }}"
       dest: "{{ generic_motd_file_dest }}"
-      mode: 0664
+      mode: "{{ generic_motd_mode }}"
       owner: "{{ generic_motd_owner }}"
       group: "{{ generic_motd_group }}"
       backup: yes
