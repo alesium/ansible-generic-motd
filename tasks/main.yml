@@ -6,6 +6,8 @@
     with_first_found:
       - files:
         - "{{ ansible_os_distribution }}.yml"
+        - "{{ ansible_os_family }}"
+        - "{{ ansible_system }}"
         - "main.yml"
 
   - name: upload the new motd
