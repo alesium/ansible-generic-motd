@@ -5,7 +5,7 @@
       - generic-motd
     with_first_found:
       - files:
-        - "{{ ansible_os_family }}.yml"
+        - "{{ ansible_os_distribution }}.yml"
         - "main.yml"
 
   - name: upload the new motd
