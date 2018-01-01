@@ -5,11 +5,11 @@
       - generic-motd
     with_first_found:
       - files:
-        - "{{ ansible_os_distribution }}.yml"
-        - "{{ ansible_os_family }}"
-        - "{{ ansible_system }}"
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
+        - "{{ ansible_system }}.yml"
         - "main.yml"
-
+  
   - name: upload the new motd
     template:
       src: "{{ generic_motd_file_src }}"
