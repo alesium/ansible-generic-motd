@@ -1,20 +1,20 @@
 ---
-  - name: load os specific vars
-    include_vars: "{{ item }}"
-    tags:
-      - generic-motd
-    with_first_found:
-      - files:
-        - "{{ ansible_os_family }}.yml"
-        - "main.yml"
+- name: load os specific vars
+  include_vars: "{{ item }}"
+  tags:
+    - generic-motd
+  with_first_found:
+    files:
+      - "{{ ansible_os_family }}.yml"
+      - "main.yml"
 
-  - name: upload the new motd
-    template:
-      src: "{{ generic_motd_file_src }}"
-      dest: "{{ generic_motd_file_dest }}"
-      mode: 0664
-      owner: "{{ generic_motd_owner }}"
-      group: "{{ generic_motd_group }}"
-      backup: yes
-    tags:
-      - generic-motd
+- name: upload the new motd
+  template:
+    src: "{{ generic_motd_file_src }}"
+    dest: "{{ generic_motd_file_dest }}"
+    mode: 0664
+    owner: "{{ generic_motd_owner }}"
+    group: "{{ generic_motd_group }}"
+    backup: true
+  tags:
+    - generic-motd
