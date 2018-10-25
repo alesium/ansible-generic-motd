@@ -17,6 +17,6 @@
     mode: "{{ generic_motd_mode }}"
     owner: "{{ generic_motd_owner }}"
     group: "{{ generic_motd_group }}"
-    backup: yes
+    backup: true
   tags:
     - generic-motd
