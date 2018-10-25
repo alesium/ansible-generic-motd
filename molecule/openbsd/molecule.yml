@@ -1,0 +1,41 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint:
+  name: yamllint
+platforms:
+  - name: openbsd-62
+    groups:
+      - instances
+    box: SierraX/openbsd-6.2
+    config_options:
+      ssh.sudo_command: doas env %c
+  - name: openbsd-64
+    groups:
+      - instances
+    box: SierraX/openbsd-6.3
+    config_options:
+      ssh.sudo_command: doas env %c
+provisioner:
+  name: ansible
+  log: true
+  playbooks:
+    converge: ../default/playbook.yml
+  inventory:
+    group_vars:
+      instances:
+        ansible_become_method: doas
+        ansible_become: true
+        ansible_python_interpreter: /usr/local/bin/python2.7
+  lint:
+    name: ansible-lint
+scenario:
+  name: openbsd
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

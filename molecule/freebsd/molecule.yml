@@ -1,0 +1,35 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint:
+  name: yamllint
+platforms:
+  - name: eleven1
+    groups:
+      - instances
+    box: freebsd/FreeBSD-11.1-RELEASE
+    config_options:
+      vm.base_mac: "080027B056FB"
+      ssh.shell: "/bin/sh"
+provisioner:
+  name: ansible
+  log: true
+  playbooks:
+    converge: ../default/playbook.yml
+  inventory:
+    group_vars:
+      instances:
+        ansible_become: true
+        ansible_python_interpreter: /usr/local/bin/python3
+  lint:
+    name: ansible-lint
+scenario:
+  name: freebsd
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

@@ -1,0 +1,10 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Install python for Ansible
+      raw: |
+        test -e /usr/local/bin/python3 || \
+        (pkg update -fq || pkg install -fy pkg && pkg install -fy python3)
+      changed_when: false
